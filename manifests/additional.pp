@@ -19,7 +19,7 @@ class windows_domain_controller::additional (
 
   # If the operating is server 2012 then run the appropriate powershell commands if not revert back to the cmd commands
 
-  if $kernel_ver =~ /^6\.2|^6\.3/| or $kernel_ver = 10\.0 {
+  if $kernel_ver = 6\.2 or $kernel_ver = 6\.3/| $kernel_ver = 10\.0 {
   # Deploy Server 2012/2012 R2 Active Directory
     exec { 'Deploy Additional 2012':
       command  => "Import-Module ADDSDeployment; Install-ADDSDomainController -DomainName ${replicadomainname} -DatabasePath ${databasepath} -LogPath ${logpath} -SafeModeAdministratorPassword ${dsrmpassword} -SysvolPath ${sysvolpath}",
