@@ -6,7 +6,7 @@ class windows_domain_controller::install(
   $kernel_ver = $windows_domain_controller::kernel_ver,
 ) {
 
-  if $kernel_ver =~ /^6\.2|^6\.3/ {
+  if $kernel_ver =~ /^6\.2|^6\.3/| or $kernel_ver = 10\.0 {
     # Install Server 2012 Active Directory Domain Services w/Management Tools
     exec {'Install ADDS':
       command  => 'Import-Module ServerManager; Add-WindowsFeature AD-Domain-Services -IncludeManagementTools',
